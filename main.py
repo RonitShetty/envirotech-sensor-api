@@ -98,12 +98,12 @@ async def filter_data(status:int):
     target_status_list = filter_sensors_by_status(status)
     return target_status_list
 
-@app.put("/sensor/update")
+@app.put("/sensor/update/{target_id}")
 async def update_data(target_id:str, new_data:SensorUpdate):
     updated_list = update_sensor_status(target_id, new_data.model_dump())
     return updated_list
 
-@app.delete("/sensor/delete_sensor")
+@app.delete("/sensor/delete_sensor/{target_id}")
 async def deleted_sensor(target_id:str):
     global sensor_data
     sensor_data = delete_sensor(target_id)
